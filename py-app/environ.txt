@@ -1,5 +1,0 @@
-SBCON_URL = mongodb://paraz:sbcon@2017@ds123722.mlab.com:23722/sbcon
-TW_CTOKEN = 8E17QEDQMdi8c2qdEG6bslpd
-TW_CSECRET = Hzrfjmy3e0KyuNEqrGOyUTXrDTKwmes0lWaAmOo7BlqKPHlUWZ
-TW_ASECRET = LgyrN8X0t5ynTcq8NwJ7Atehh0CrD7477wFUKf8NrEolM
-TW_ATOKEN = 850697540-E6ccBsss0Lx3o1pxlXvRsaXPeWepWTUgvaybR0fq
