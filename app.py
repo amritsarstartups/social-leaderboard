@@ -6,7 +6,9 @@ from flask_cors import cross_origin
 
 import pymongo
 from bson.objectid import ObjectId
-from mods.utility import set_password
+
+from mods.utility import resolve_members
+
 
 
 app = Flask(__name__)
@@ -50,24 +52,22 @@ def create_team():
 	elif request.method =="POST":
 		if not request.json and not "data" in request.json: 
 			abort(400)
-
 		try:
 			res = request.get_json()
 			res = res.get('data')
-			pswd = set_password(str(res.get('password')))
+			members_resolved = resolve_members(res.get('members'))
 			data = {
 				"name": res.get('name'),
 				"picture_url" : res.get('picture_url'),
-				"password": pswd,
-				"members" : res.get('members'),
+				"members" : members_resolved,
 				"desc": res.get('desc')
 			}
 			save_data(data, "teams")
 			return (jsonify({"response":"success"}), 200)
+			return "hello world", 200
 		except Exception as e:
 			print(e)
 			return {"error": "Invalid Parameters"}
-    
 
 if __name__ == '__main__':
     app.run()

@@ -52,7 +52,7 @@ def hashtag_fetch_tw(hashtag, since_date):
 			"tweet": tweet.text,
 			"likes_count": tweet.favorite_count,
 			"retweets_count": tweet.retweet_count,
-			"username": tweet.user.screen_name,
+			"username": tweet.user.screen_name.lower(),
 			"created_at" : str(tweet.created_at),
 			
 		}
