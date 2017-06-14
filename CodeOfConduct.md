@@ -43,6 +43,6 @@ Teams are requested to take their respective seats and settle down after the onb
  
 ### 2.4 Hackathon Results
 * The decision made by the jury will be treated as the final decision under any circumstances
-Jury holds the right to disqualify any team or submission if any member of the team doesn’t comply with the rules mentioned in section 2.3 or the plagiarism is found in the application code
+* Jury holds the right to disqualify any team or submission if any member of the team doesn’t comply with the rules mentioned in section 2.3 or the plagiarism is found in the application code
 * Results of the hackathon will be based on the idea taken up by the team, quality of the code and presentation given by the team after the end of the hackathon
-Any participant or team found indulged in any kind of malpractices including obstructing other teams will be expelled or disqualified from event
+* Any participant or team found indulged in any kind of malpractices including obstructing other teams will be expelled or disqualified from event
