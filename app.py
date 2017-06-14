@@ -54,7 +54,7 @@ def create_team():
 		try:
 			res = request.get_json()
 			res = res.get('data')
-			pswd = set_password(res.get('password'))
+			pswd = set_password(str(res.get('password')))
 			data = {
 				"name": res.get('name'),
 				"picture_url" : res.get('picture_url'),
@@ -64,7 +64,6 @@ def create_team():
 			}
 			save_data(data, "teams")
 			return (jsonify({"response":"success"}), 200)
-
 		except Exception as e:
 			print(e)
 			return {"error": "Invalid Parameters"}
