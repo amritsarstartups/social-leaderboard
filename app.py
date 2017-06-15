@@ -86,9 +86,22 @@ def send_team_stats(team_id):
 def send_leaderboard():
 	try:
 		if request.method == "GET":
+			bucket = {"data":[]}
 			data = json.loads(get_data('stats'))
-			data = sorted(data['data'], key=lambda k: k['total_engagements'], reverse=True) 
-			return jsonify(data)
+			s_data = sorted(data['data'], key=lambda k: k['total_engagements'], reverse=True) 
+			for s in s_data:
+				temp =  {}
+				team_id = s['_id']
+				client = pymongo.MongoClient(db_url)
+				db = client.get_default_database()
+				coll = db["teams"]
+				team_data = json.loads(json.dumps({"data":list(coll.find({'_id': ObjectId(team_id)}))},  default=newEncoder))
+				team_data = team_data['data'][0]
+				client.close()
+				temp['team'] = team_data
+				temp['stats'] = s
+				bucket['data'].append(temp)
+			return json.dumps(bucket)
 	except Exception as e:
 		return {"error":str(e)}
 
