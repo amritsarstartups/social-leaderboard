@@ -19,7 +19,7 @@ def tasks():
 
 tasks()
 sched = BlockingScheduler()
-@sched.scheduled_job('interval', minutes=4)
+@sched.scheduled_job('interval', minutes=2)
 def timed_job():
 	try: 
 		tasks()
