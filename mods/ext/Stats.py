@@ -44,7 +44,7 @@ def calculate_stats():
 
 		#get username
 		for m in t['members']:
-			tw.append({"username": m['twitter_username']})
+			tw.append({"username": m['twitter_username'].lower()})
 			insta.append({"owner_id": m['instagram_id']})
 
 		total_engagements = 0
