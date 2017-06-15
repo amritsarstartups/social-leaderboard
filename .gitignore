@@ -90,3 +90,6 @@ htmlcov
 .coverage
 .coverage.*
 *,cover
+set_eviron.txt
+.test_flask
+
