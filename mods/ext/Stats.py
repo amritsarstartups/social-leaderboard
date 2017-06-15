@@ -53,7 +53,6 @@ def calculate_stats():
 		TWC = coll.find({"$or": tw})
 		n = TWC.count()
 		temp_stats['twitter']['tweet_count'] = n
-		total_engagements+=n
 		for C in TWC:
 			temp_stats['twitter']['twitter_likes']+=int(C['likes_count'])
 			total_engagements+=int(C['likes_count'])
@@ -65,7 +64,6 @@ def calculate_stats():
 		IG = coll.find({"$or": insta})
 		n = IG.count()
 		temp_stats['instagram']['instagram_post_count']=n
-		total_engagements+=n
 		for C in IG:
 			temp_stats['instagram']['instagram_like']+=int(C['like'])
 			total_engagements+=int(C['like'])
