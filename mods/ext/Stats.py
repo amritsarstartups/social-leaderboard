@@ -47,24 +47,31 @@ def calculate_stats():
 			tw.append({"username": m['twitter_username']})
 			insta.append({"owner_id": m['instagram_id']})
 
+		total_engagements = 0
 		# twitter stats
 		coll = db['tweets_dump']
 		TWC = coll.find({"$or": tw})
 		n = TWC.count()
 		temp_stats['twitter']['tweet_count'] = n
+		total_engagements+=n
 		for C in TWC:
 			temp_stats['twitter']['twitter_likes']+=int(C['likes_count'])
+			total_engagements+=int(C['likes_count'])
 			temp_stats['twitter']['twitter_retweets']+=int(C['retweets_count'])
+			total_engagements+=int(C['retweets_count'])
 		
 		# instagram stats
 		coll = db['insta_dump']
 		IG = coll.find({"$or": insta})
 		n = IG.count()
 		temp_stats['instagram']['instagram_post_count']=n
+		total_engagements+=n
 		for C in IG:
 			temp_stats['instagram']['instagram_like']+=int(C['like'])
+			total_engagements+=int(C['like'])
 			temp_stats['instagram']['instagram_comments']+=int(C['comments'])
-
+			total_engagements+=int(C['comments'])
+		temp_stats['total_engagements']=total_engagements
 
 		STATS.append(temp_stats)
 

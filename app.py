@@ -69,6 +69,43 @@ def create_team():
 			print(e)
 			return {"error": "Invalid Parameters"}
 
+@app.route('/api/v1.0/leaderboard/<string:team_id>', methods=["GET"])
+@cross_origin()
+def send_team_stats(team_id):
+	if request.method == "GET":
+		if len(team_id)>0:
+			client = pymongo.MongoClient(db_url)
+			db = client.get_default_database()
+			coll = db["stats"]
+			return json.dumps({"data":list(coll.find({'_id': ObjectId(team_id)}))},  default=newEncoder)	
+	else:
+		return {"error": "Invalid Parameters"}
+
+@app.route('/api/v1.0/leaderboard/', methods=["GET"])
+@cross_origin()
+def send_leaderboard():
+	try:
+		if request.method == "GET":
+			data = get_data('stats')
+			return data
+	except Exception as e:
+		return {"error":str(e)}
+
+
+@app.route('/api/v1.0/teams/<string:team_id>', methods=["GET"])
+@cross_origin()
+def send_team(team_id):
+	if request.method == "GET":
+		if len(team_id)>0:
+			client = pymongo.MongoClient(db_url)
+			db = client.get_default_database()
+			coll = db["teams"]
+			return json.dumps({"data":list(coll.find({'_id': ObjectId(team_id)}))},  default=newEncoder)	
+	else:
+		return {"error": "Invalid Parameters"}
+
+	
+
 if __name__ == '__main__':
     app.run()
 
