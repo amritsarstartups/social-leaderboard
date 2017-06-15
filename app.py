@@ -86,8 +86,9 @@ def send_team_stats(team_id):
 def send_leaderboard():
 	try:
 		if request.method == "GET":
-			data = get_data('stats')
-			return data
+			data = json.loads(get_data('stats'))
+			data = sorted(data['data'], key=lambda k: k['total_engagements'], reverse=True) 
+			return jsonify(data)
 	except Exception as e:
 		return {"error":str(e)}
 
