@@ -2,7 +2,7 @@ import os
 import sys
 import json
 from flask import Flask, request, abort, jsonify
-from flask_cors import cross_origin
+from flask_cors  import CORS, cross_origin
 
 import pymongo
 from bson.objectid import ObjectId
@@ -12,7 +12,7 @@ from mods.utility import resolve_members
 
 
 app = Flask(__name__)
-
+cors = CORS(app)
 db_url = os.environ['SBCON_DB']
 
 @app.route('/', methods=['GET'])
