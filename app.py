@@ -40,9 +40,6 @@ def get_data(collection):
 	coll = db[collection]
 	return json.dumps({"data":list(coll.find())},  default=newEncoder )
 
-
-
-
 @app.route('/api/v1.0/teams/', methods=['POST', 'GET', 'PUT'])
 @cross_origin()
 def create_team():
@@ -63,7 +60,6 @@ def create_team():
 				"desc": res.get('desc')
 			}
 			save_data(data, "teams")
-			return (jsonify({"response":"success"}), 200)
 			return "hello world", 200
 		except Exception as e:
 			print(e)
