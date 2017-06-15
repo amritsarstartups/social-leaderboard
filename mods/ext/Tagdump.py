@@ -94,14 +94,13 @@ def hashtag_fetch_insta(hashtag):
 				"like":p['likes']['count'],
 				"comments":p['comments']['count']
 			}
-			print(p['id'])
 			get_posts.append(temp_dict)
 		if d['tag']['media']['page_info']['end_cursor'] == None:
 			break
 		explore_url = "https://www.instagram.com/explore/tags/{}/?__a=1&max_id={}".format(hashtag, 
 																				d['tag']['media']['page_info']['end_cursor'])
 
-
+	print(get_posts)
 	save_datas(get_posts, "insta_dump")		
 	
 

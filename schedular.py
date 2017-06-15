@@ -1,5 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 from mods.ext.Tagdump import hashtag_fetch_tw, hashtag_fetch_insta
+from mods.ext.Stats import calculate_stats
 from time import time
 
 def tasks():
@@ -10,6 +11,7 @@ def tasks():
 	for h in hashtags:
 		hashtag_fetch_tw(h, start_date_tw)
 		hashtag_fetch_insta(h)
+	calculate_stats()
 	print("Task Complete")
 	t2  = time()
 	print("Task completed in %s sec", t2-t1)
