@@ -6,11 +6,11 @@ from time import time
 def tasks():
 	t1 = time()
 	print("Starting Schedular")
-	start_date_tw  = "2017-06-14"
+	start_date  = "2017-06-14"
 	hashtags = ['lifeatstatusbrew', 'sbcon']
 	for h in hashtags:
-		hashtag_fetch_tw(h, start_date_tw)
-		hashtag_fetch_insta(h)
+		hashtag_fetch_tw(h, start_date)
+		hashtag_fetch_insta(h,start_date)
 	calculate_stats()
 	print("Task Complete")
 	t2  = time()

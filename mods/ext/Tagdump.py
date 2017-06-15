@@ -64,7 +64,7 @@ def hashtag_fetch_tw(hashtag, since_date):
 		save_datas(data, "tweets_dump")
 		update_last_id(last_id)
 
-def hashtag_fetch_insta(hashtag):
+def hashtag_fetch_insta(hashtag,from_date):
 	hashtag = hashtag.replace("#", "")
 	get_posts = []
 	explore_url = "https://www.instagram.com/explore/tags/{}/?__a=1".format(hashtag)
@@ -80,7 +80,8 @@ def hashtag_fetch_insta(hashtag):
 				"like":p['likes']['count'],
 				"comments":p['comments']['count']
 			}
-		get_posts.append(temp_dict)
+		if temp_dict['date'].split()[0]>=from_date:
+			get_posts.append(temp_dict)
 
 	while 1:
 		d = json.loads(requests.get(explore_url).text)
@@ -94,7 +95,8 @@ def hashtag_fetch_insta(hashtag):
 				"like":p['likes']['count'],
 				"comments":p['comments']['count']
 			}
-			get_posts.append(temp_dict)
+			if temp_dict['date'].split()[0]>=from_date:
+				get_posts.append(temp_dict)
 		if d['tag']['media']['page_info']['end_cursor'] == None:
 			break
 		explore_url = "https://www.instagram.com/explore/tags/{}/?__a=1&max_id={}".format(hashtag, 
@@ -108,5 +110,5 @@ def hashtag_fetch_insta(hashtag):
 
 
 if __name__ == "__main__":
-	hashtag_fetch_tw("lifeatstatusbrew", "2017-06-01")
-	hashtag_fetch_insta("sbcon")
+	# hashtag_fetch_tw("lifeatstatusbrew", "2017-06-01")
+	hashtag_fetch_insta("sbcon", "2017-06-15")
